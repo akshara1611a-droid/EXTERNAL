@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Food Waste Reduction Platform</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #f5f5f5;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background: #2e7d32;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        header h1 {
+            margin-bottom: 10px;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        /* Main container */
+        .container {
+            width: 80%;
+            max-width: 900px;
+            margin: 30px auto;
+        }
+
+        /* Headings */
+        h2 {
+            color: #2e7d32;
+            margin-top: 25px;
+        }
+
+        /* Form */
+        form {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Input fields */
+        input {
+            width: 95%;
+            padding: 12px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+        }
+
+        input:focus {
+            outline: none;
+            border-color: #2e7d32;
+        }
+
+        /* Button */
+        button {
+            padding: 12px 20px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+        }
+
+        button:hover {
+            background: #1b5e20;
+        }
+
+        /* Donation card */
+        .donation-card {
+            background: white;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 10px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .donation-card h3 {
+            color: #2e7d32;
+            margin-top: 0;
+        }
+
+        .donation-card p {
+            margin: 8px 0;
+        }
+
+        /* Mobile responsive design */
+        @media (max-width: 600px) {
+
+            .container {
+                width: 90%;
+            }
+
+            header h1 {
+                font-size: 24px;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            form {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>🍱 Food Waste Reduction Platform</h1>
+        <p>Share surplus food. Reduce waste. Help communities.</p>
+    </header>
+
+    <!-- Main Content -->
+    <div class="container">
+
+        <h2>Add Surplus Food</h2>
+
+        <form id="donationForm">
+
+            <input
+                type="text"
+                id="donorName"
+                placeholder="Donor Name"
+                required
+            >
+
+            <input
+                type="text"
+                id="foodName"
+                placeholder="Food Name"
+                required
+            >
+
+            <input
+                type="number"
+                id="quantity"
+                placeholder="Quantity"
+                required
+            >
+
+            <input
+                type="text"
+                id="location"
+                placeholder="Location"
+                required
+            >
+
+            <input
+                type="datetime-local"
+                id="pickupTime"
+                required
+            >
+
+            <button type="submit">
+                Donate Food
+            </button>
+
+        </form>
+
+        <h2>Available Donations</h2>
+
+        <div id="donationList"></div>
+
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+
+        const donationForm = document.getElementById("donationForm");
+        const donationList = document.getElementById("donationList");
+
+        donationForm.addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const donorName =
+                document.getElementById("donorName").value;
+
+            const foodName =
+                document.getElementById("foodName").value;
+
+            const quantity =
+                document.getElementById("quantity").value;
+
+            const location =
+                document.getElementById("location").value;
+
+            const pickupTime =
+                document.getElementById("pickupTime").value;
+
+            // Create donation card
+            const donationCard =
+                document.createElement("div");
+
+            donationCard.classList.add("donation-card");
+
+            donationCard.innerHTML = `
+                <h3>🍱 ${foodName}</h3>
+
+                <p>
+                    <strong>Donor:</strong>
+                    ${donorName}
+                </p>
+
+                <p>
+                    <strong>Quantity:</strong>
+                    ${quantity}
+                </p>
+
+                <p>
+                    <strong>Location:</strong>
+                    ${location}
+                </p>
+
+                <p>
+                    <strong>Pickup Time:</strong>
+                    ${pickupTime}
+                </p>
+            `;
+
+            // Add card to donation list
+            donationList.appendChild(donationCard);
+
+            // Clear form
+            donationForm.reset();
+
+            // Success message
+            alert("Food donation added successfully! 🍱");
+
+        });
+
+    </script>
+
+</body>
+
+</html>
